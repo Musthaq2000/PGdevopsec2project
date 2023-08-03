@@ -1,0 +1,45 @@
+Before creating the main.tf and creds.tf
+make sure you have configured aws using below 
+1. aws configure
+2. nano credentials
+
+paste the access, security key and token info and save
+
+post that setup aws cli
+pip install awscli
+
+Now perform the below commands as below 
+1. terraform init
+2. terraform plan
+3. terraform apply 
+
+once done you can see the private key by performing ls in command line
+give permission as chmod 400 "keyname"
+connect to instance using below info
+ssh Ubuntu@"publicip" -i "keyname"
+
+post connecting to the instance
+locate to ssh autorized_keys file in the ec2 instance 
+
+copy the id_rsa.pub from your localmachine and paste in the ssh autorized_keys file in the ec2 instance
+
+Now in your localmachine make sure to add the ec2 host to the ansible inventory file
+sudo vi /etc/ansible/hosts
+
+hostname ansible_user=ubuntu
+save and exit
+
+
+please check whether the ec2 host is accesible via ansible
+ansible -m ping all --v 
+ansible -m ping all 
+(it should show as below)
+
+44.201.234.224 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+
