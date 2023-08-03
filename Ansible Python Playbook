@@ -1,0 +1,19 @@
+play book for python
+
+---
+  
+- name: install python
+
+  hosts: 44.201.234.224
+
+  become: true
+
+  tasks:
+
+    - name: install python
+
+      apt:
+
+        name: python3
+
+        state: present
